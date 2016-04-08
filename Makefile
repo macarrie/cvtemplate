@@ -1,2 +1,2 @@
 all:
-	lualatex cv.tex && evince cv.pdf
+	lualatex example.tex && evince example.pdf

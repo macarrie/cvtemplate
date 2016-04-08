@@ -1,8 +1,9 @@
 % vi: set syntax=tex:
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{cvdebatard}[2016/04/03 Le CV qui est plus beau que ta maman]
+\ProvidesClass{jeanmichelcv}[2016/04/03 Le CV qui est plus beau que ta maman]
 
 \LoadClass{article}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Packages
@@ -21,9 +22,12 @@
 % Colors
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\definecolor{primary}   {HTML}{4D97F5}
+\definecolor{primary}   {HTML}{000000}
 \definecolor{textcolor} {HTML}{333333}
 \definecolor{fade}      {HTML}{777777}
+\newcommand{\firstnamecolor}{\color{textcolor}}
+\newcommand{\lastnamecolor}{\color{primary}}
+\newcommand{\rulecolor}{\color{textcolor}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Font spec
@@ -62,19 +66,15 @@
     \hfill \kern \z@
 }
 
-%\titleformat{\section}
-	%{\color{primary}\headerfont\bfseries\large\uppercase}
-	%{}{0em}
-	%{}
-    %%[\hrulefill[0.5mm]{1mm}]
-    %[\hrulefill]
-
 \renewcommand{\section}[1]{
     {\color{primary}
         \vspace*{1em} ~\\
-        \noindent {\headerfont\bfseries\Large #1} \hrulefill[0.5mm]{1mm}
-        \vspace*{1em} ~\\
+        \noindent {\headerfont\bfseries\Large #1}
     }
+    {\rulecolor
+        \hrulefill[0.3em]{0.25em}
+    }
+    \vspace*{1em} ~\\
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -95,9 +95,9 @@
 
 \newcommand{\makecvheader}[0]{
     \lhead{
-        {\Huge\headerfont\color{primary}\@firstname \textbf{\@lastname}} \\
+        {\Huge\headerfont {\firstnamecolor\@firstname}{\lastnamecolor\textbf{\@lastname} } }  \\
         \vspace{0.5em}
-        \indent\color{textcolor}\headerfont\@title
+        \hspace{0.1em}\color{textcolor}\headerfont\large\@title
     }
     \rhead{\color{fade}\small\@phone \\ \@email \\ \@extrainfo}
 }
@@ -123,3 +123,31 @@
     \ifthenelse{\equal{#5}{}}{}{\newline \small{#5}}%
     } \\
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Options
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareOption{coloredrules}{
+    \renewcommand{\rulecolor}{\color{primary}}
+}
+\DeclareOption{coloredname}{
+    \renewcommand{\firstnamecolor}{\color{primary}}
+}
+\DeclareOption{blue}{
+    \definecolor{primary}{HTML}{4B84CC}
+}
+\DeclareOption{green}{
+    \definecolor{primary}{HTML}{4EC766}
+}
+\DeclareOption{orange}{
+    \definecolor{primary}{HTML}{FA8507}
+}
+\DeclareOption{black}{
+    \definecolor{primary}{HTML}{222222}
+}
+
+% Default Options
+\ExecuteOptions{blue}
+
+\ProcessOptions\relax
