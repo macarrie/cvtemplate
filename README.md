@@ -37,7 +37,7 @@ If no options are passed, `blue` is used as default color.
 Contains fullname and contact informations.
 
 - Fullname
-```
+```latex
 \name{JeanMichel}{CV}
 
 or
@@ -47,44 +47,44 @@ or
 ```
 
 - Title: Description under fullname
-```
+```latex
 \title{Bla bla bla bla bla bla}
 ```
 
 - Address
-```
+```latex
 \address{City, Country}
 ```
 
 - Phone number
-```
+```latex
 \phone{06~00~00~00~00}
 ```
 
 - Extra info: anything that can be useful
-```
+```latex
 \extrainfo{Extra info bla bla bla}
 ```
 
 - Email address
-```
+```latex
 \email{lolololol@lol.com}
 ```
 
 These informations are required and used to render the header:
-```
+```latex
  \makecvheader
 ```
 
 ### Content
 
 Sections are overridden to display a horizontal rule. No option is taken in account for this command:
-```
+```latex
  \section{My section}
 ```
 
 CV entries must be placed into a `cventrylist` environment:
-```
+```latex
 \begin{cventrylist}
     \cventry{date}{title}{location}{description}{content}
 \end{cventrylist}
@@ -96,7 +96,7 @@ For `cventry`, the `location`, `description`, `content` arguments can be left bl
 ### Color
 
 Global color can be changed be redefining the `primary` color.
-```
+```latex
 % Define primary as black (#000000)
 \definecolor{\primary}{HTML}{000000}
 ```
@@ -105,7 +105,7 @@ All definitions following the `xcolor` package specifications are accepted.
 ### Spacing
 
 In CV entries, left column size can be adjusted by changing the `datewidth` length.
-```
+```latex
  \setlength{\datewidth}{5cm}
 ```
 or other length related commands.
