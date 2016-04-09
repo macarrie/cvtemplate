@@ -15,19 +15,29 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{fancyhdr}
-\RequirePackage[quiet]{fontspec}
+\usepackage[quiet]{fontspec}
 \usepackage{ifthen}
+\usepackage{fontawesome}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Colors
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\definecolor{primary}   {HTML}{000000}
 \definecolor{textcolor} {HTML}{333333}
 \definecolor{fade}      {HTML}{777777}
-\newcommand{\firstnamecolor}{\color{textcolor}}
-\newcommand{\lastnamecolor}{\color{primary}}
+\definecolor{blue}      {HTML}{4B84CC}
+\definecolor{green}     {HTML}{4BCC53}
+\definecolor{orange}    {HTML}{FA8507}
+\definecolor{black}     {HTML}{222222}
+\definecolor{pink}      {HTML}{CC4BC4}
+\definecolor{red}       {HTML}{C24242}
+\definecolor{lightblue} {HTML}{33DECD}
+\newcommand{\primarycolor}{\color{black}}
+\newcommand{\firstnamecolor}{\primarycolor}
+\newcommand{\lastnamecolor}{\primarycolor}
 \newcommand{\rulecolor}{\color{textcolor}}
+\newcommand{\sectioncolor}{\primarycolor}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  Font spec
@@ -61,13 +71,12 @@
 
 \renewcommand*{\hrulefill}[2][0pt]{
     \leavevmode
-    %\leaders \hrule height 1pt
     \leaders \hbox to 0.5pt{\rule[#1]{1pt}{#2}}
     \hfill \kern \z@
 }
 
 \renewcommand{\section}[1]{
-    {\color{primary}
+    {\sectioncolor
         \vspace*{1em} ~\\
         \noindent {\headerfont\bfseries\Large #1}
     }
@@ -93,13 +102,29 @@
 \newcommand*{\phone}[1]{\def\@phone{#1}}
 \newcommand*{\extrainfo}[1]{\def\@extrainfo{#1}}
 
+\title{}
+\address{}
+\phone{}
+\email{}
+\extrainfo{}
+
 \newcommand{\makecvheader}[0]{
     \lhead{
-        {\Huge\headerfont {\firstnamecolor\@firstname}{\lastnamecolor\textbf{\@lastname} } }  \\
-        \vspace{0.5em}
-        \hspace{0.1em}\color{textcolor}\headerfont\large\@title
+        \parbox[c]{0.5\textwidth}{\centering
+            {\Huge\headerfont {\firstnamecolor\@firstname}{\lastnamecolor\textbf{\@lastname} } }  \\
+            \vspace*{0.5em}
+            \color{textcolor}\headerfont\large\@title
+        }
     }
-    \rhead{\color{fade}\small\@phone \\ \@email \\ \@extrainfo}
+    \rhead{
+        \parbox[c]{0.5\textwidth}{\raggedleft
+            \color{fade}\small
+            \ifthenelse{\equal{\@address}{}}{}{\@address \\}
+            \ifthenelse{\equal{\@phone}{}}{}{\@phone \\}
+            \ifthenelse{\equal{\@email}{}}{}{\@email \\}
+            \ifthenelse{\equal{\@extrainfo}{}}{}{\@extrainfo \\}
+        }
+    }
 }
 
 %%%% Cv entries
@@ -129,22 +154,43 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \DeclareOption{coloredrules}{
-    \renewcommand{\rulecolor}{\color{primary}}
+    \renewcommand{\rulecolor}{\sectioncolor}
 }
 \DeclareOption{coloredname}{
-    \renewcommand{\firstnamecolor}{\color{primary}}
+    \renewcommand{\firstnamecolor}{\primarycolor}
 }
 \DeclareOption{blue}{
-    \definecolor{primary}{HTML}{4B84CC}
+    \renewcommand{\primarycolor}{\color{blue}}
 }
 \DeclareOption{green}{
-    \definecolor{primary}{HTML}{4EC766}
+    \renewcommand{\primarycolor}{\color{green}}
 }
 \DeclareOption{orange}{
-    \definecolor{primary}{HTML}{FA8507}
+    \renewcommand{\primarycolor}{\color{orange}}
 }
 \DeclareOption{black}{
-    \definecolor{primary}{HTML}{222222}
+    \renewcommand{\primarycolor}{\color{black}}
+}
+\DeclareOption{rainbow}{
+    \newcounter{sectionColorCounter}
+    \renewcommand{\sectioncolor}{
+        \ifcase\value{sectionColorCounter}%
+			\color{blue}\or%
+            \color{red}\or%
+            \color{green}\or%
+            \color{orange}\or%
+            \color{lightblue}\or%
+            \color{pink}\else%
+            \color{blue}\setcounter{sectionColorCounter}{0}\fi
+        \stepcounter{sectionColorCounter}
+    }
+    \renewcommand{\rulecolor}{
+        \addtocounter{sectionColorCounter}{-1}
+        \sectioncolor
+    }
+}
+\DeclareOption{blackrules}{
+    \renewcommand{\rulecolor}{\color{textcolor}}
 }
 
 % Default Options

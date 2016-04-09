@@ -2,17 +2,18 @@
 
 ## Dependencies
 
-- LuaTex or XeTex (for custom font)
+- LuaTex or XeTex (for custom font, installable via `texlive-luatex` or `texlive-xetex` packages)
 - Packages:
-    - inputenc
-    - xcolor
-    - geometry
-    - titlesec
-    - tabularx
-    - array
-    - fancyhdr
-    - fontspec
-    - ifthen
+    - `inputenc`
+    - `xcolor`
+    - `geometry`
+    - `titlesec`
+    - `tabularx`
+    - `array`
+    - `fancyhdr`
+    - `fontspec`
+    - `ifthen`
+    - `fontawesome` (available in `texlive-fonts-extra`)
 
 ## Document class
 
@@ -21,10 +22,12 @@ Provides a `jeanmichelcv` documentclass
 ### Options
 
 - `coloredrules`: Makes the titlerules colored
+- `blackrules`: Makes the titlerules black
 - `coloredname`: Makes the first name colored as well
 - `blue`: Define blue as global color
 - `orange`: Define orange as global color
 - `black`: Define black as global color
+- `rainbow`: Color is changed for each different section (blue, red, green, orange, lightblue and loop to blue)
 
 ### Default Options
 
