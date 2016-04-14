@@ -76,22 +76,22 @@ or
 ```
 
 - Website
-```
+```latex
  \website{bestwebsiteever.com}
 ```
 
 - Github account
-```
+```latex
  \github{github_username}
 ```
 
 - LinkedIn account
-```
+```latex
  \linkedin{linkedin_username}
 ```
 
 - Twitter account
-```
+```latex
  \twitter{@twitter_username}
 ```
 
