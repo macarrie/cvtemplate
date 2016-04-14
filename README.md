@@ -28,6 +28,7 @@ Provides a `jeanmichelcv` documentclass
 - `orange`: Define orange as global color
 - `black`: Define black as global color
 - `rainbow`: Color is changed for each different section (blue, red, green, orange, lightblue and loop to blue)
+- `noicons`: Hide icons in right side header
 
 ### Default Options
 
@@ -72,6 +73,26 @@ or
 - Email address
 ```latex
 \email{lolololol@lol.com}
+```
+
+- Website
+```
+ \website{bestwebsiteever.com}
+```
+
+- Github account
+```
+ \github{github_username}
+```
+
+- LinkedIn account
+```
+ \linkedin{linkedin_username}
+```
+
+- Twitter account
+```
+ \twitter{@twitter_username}
 ```
 
 These informations are required and used to render the header:
