@@ -1,5 +1,7 @@
 # JeanMichelCV Template
 
+[![GuardRails badge](https://badges.production.guardrails.io/macarrie/jeanmichelcv.svg)](https://www.guardrails.io)
+
 ## Dependencies
 
 - LuaTex or XeTex (for custom font, installable via `texlive-luatex` or `texlive-xetex` packages)
